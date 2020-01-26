@@ -1,5 +1,5 @@
 from key_strokes import key_strokes_controllers
-def game_loop(pygame, screen, player):
+def game_loop(pygame, screen, player, enemy):
     # Game Loop
     running = True
 
@@ -14,14 +14,30 @@ def game_loop(pygame, screen, player):
           #Check keystroke pressed is right or left
           playerx_change = key_strokes_controllers(pygame, event)
 
-        player.player_x += playerx_change
-        
-        # Add game boundries
-        if player.player_x <= 0:
-            player.player_x = 0
-        elif player.player_x >= 736:
-            player.player_x = 736
+          # Enemy change move
+          enemyx_change = 0.3
+          enemyy_change = 40
 
-        player.add_player(screen)
+        # Add game boundries for player
+        player.player_or_enemy_x += playerx_change
+        
+        if player.player_or_enemy_x <= 0:
+            player.player_or_enemy_x = 0
+        elif player.player_or_enemy_x >= 736:
+            player.player_or_enemy_x = 736
+
+        # Add game boundries for enemy
+        enemy.player_or_enemy_x += enemyx_change
+
+        if enemy.player_or_enemy_x <= 0:
+            enemyx_change = 0.3
+            enemy.player_or_enemy_y += enemyy_change
+
+        elif enemy.player_or_enemy_x >= 736:
+            enemyx_change = -0.3
+            enemy.player_or_enemy_y += enemyy_change
+
+        player.add_player_or_enemy(screen)
+        enemy.add_player_or_enemy(screen)
 
         pygame.display.update()

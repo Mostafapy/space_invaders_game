@@ -1,11 +1,14 @@
 from key_strokes import key_strokes_controllers
-def game_loop(pygame, screen, player, enemy):
+def game_loop(pygame, screen, player, enemy, background_image):
     # Game Loop
     running = True
 
     while running:
         #RGB RED, GREEN, BLUE
         screen.fill((0, 0, 0))
+
+        #Background
+        screen.blit(background_image, (0, 0))
 
         for event in pygame.event.get():
           if event.type == pygame.QUIT:
@@ -15,7 +18,7 @@ def game_loop(pygame, screen, player, enemy):
           playerx_change = key_strokes_controllers(pygame, event)
 
           # Enemy change move
-          enemyx_change = 0.3
+          enemyx_change = 4
           enemyy_change = 40
 
         # Add game boundries for player
@@ -30,11 +33,11 @@ def game_loop(pygame, screen, player, enemy):
         enemy.player_or_enemy_x += enemyx_change
 
         if enemy.player_or_enemy_x <= 0:
-            enemyx_change = 0.3
+            enemyx_change = 4
             enemy.player_or_enemy_y += enemyy_change
 
         elif enemy.player_or_enemy_x >= 736:
-            enemyx_change = -0.3
+            enemyx_change = -4
             enemy.player_or_enemy_y += enemyy_change
 
         player.add_player_or_enemy(screen)

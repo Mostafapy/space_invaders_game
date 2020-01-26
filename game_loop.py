@@ -1,8 +1,7 @@
+from key_strokes import key_strokes_controllers
 def game_loop(pygame, screen, player):
     # Game Loop
     running = True
-
-    playerx_change = 0
 
     while running:
         #RGB RED, GREEN, BLUE
@@ -13,14 +12,7 @@ def game_loop(pygame, screen, player):
              running = False
           
           #Check keystroke pressed is right or left
-          if event.type == pygame.KEYDOWN:
-              if event.key == pygame.K_LEFT:
-                playerx_change = -0.3
-              if event.key == pygame.K_RIGHT:
-                playerx_change = 0.3
-          elif event.type == pygame.KEYUP:
-              if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                 playerx_change = 0
+          playerx_change = key_strokes_controllers(pygame, event)
 
         player.player_x += playerx_change
         player.add_player(screen)

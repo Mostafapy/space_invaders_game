@@ -15,6 +15,13 @@ def game_loop(pygame, screen, player):
           playerx_change = key_strokes_controllers(pygame, event)
 
         player.player_x += playerx_change
+        
+        # Add game boundries
+        if player.player_x <= 0:
+            player.player_x = 0
+        elif player.player_x >= 736:
+            player.player_x = 736
+
         player.add_player(screen)
 
         pygame.display.update()

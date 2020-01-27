@@ -1,46 +1,45 @@
-from key_strokes import key_strokes_controllers
-def game_loop(pygame, screen, player, enemy, background_image):
+from helpers.key_strokes import key_strokes_controllers
+from helpers.Value import Value
+def game_loop(pygame, screen, player, enemy, bullet, background_image):
     # Game Loop
     running = True
 
+    #Player
+    playerx_change = Value(0)
+
+    #Bullet
+    bulletx_change = Value(0)
+    bullety_change = Value(40)
+    bullet_state = Value("ready")
+
+    #Enemy
+    enemyx_change = Value(4)
+    enemyy_change = Value(40)
     while running:
         #RGB RED, GREEN, BLUE
         screen.fill((0, 0, 0))
 
         #Background
         screen.blit(background_image, (0, 0))
-
+        
         for event in pygame.event.get():
           if event.type == pygame.QUIT:
              running = False
           
           #Check keystroke pressed is right or left
-          playerx_change = key_strokes_controllers(pygame, event)
+          # Bullet change movement
+          key_strokes_controllers(pygame, event, playerx_change, player, bullet, screen, bullet_state)
 
-          # Enemy change move
-          enemyx_change = 4
-          enemyy_change = 40
+        #Player change movement
+        player.object_movement(playerx_change)
 
-        # Add game boundries for player
-        player.player_or_enemy_x += playerx_change
+        # Enemy change movement
+        enemy.object_movement(enemyx_change, enemyy_change)
         
-        if player.player_or_enemy_x <= 0:
-            player.player_or_enemy_x = 0
-        elif player.player_or_enemy_x >= 736:
-            player.player_or_enemy_x = 736
+        #bullet
+        bullet.object_movement(screen, player.game_object_x, bullety_change, bullet_state)
 
-        # Add game boundries for enemy
-        enemy.player_or_enemy_x += enemyx_change
-
-        if enemy.player_or_enemy_x <= 0:
-            enemyx_change = 4
-            enemy.player_or_enemy_y += enemyy_change
-
-        elif enemy.player_or_enemy_x >= 736:
-            enemyx_change = -4
-            enemy.player_or_enemy_y += enemyy_change
-
-        player.add_player_or_enemy(screen)
-        enemy.add_player_or_enemy(screen)
+        player.add_object(screen)
+        enemy.add_object(screen)
 
         pygame.display.update()

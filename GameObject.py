@@ -10,4 +10,6 @@ class GameObject:
     def add_object(self, screen):
         pass
 
-    
+    @abstractmethod
+    def object_movement(self, **change_movement_params):
+        pass

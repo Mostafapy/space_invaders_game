@@ -3,8 +3,7 @@ import random
 from Objects.GameObject import GameObject
 
 class Bullets(GameObject):
-     def add_object(self, screen, bullet_state = None):
-        if bullet_state is not None:
+     def add_object(self, screen, bullet_state):
            bullet_state.value = "fire"
            screen.blit(self.game_object_img_or_font, (self.game_object_x + 16, self.game_object_y + 10))
     

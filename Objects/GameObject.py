@@ -10,7 +10,7 @@ class GameObject(metaclass=ABCMeta):
          self.game_object_y = postion_y
 
     @abstractmethod
-    def add_object(self, screen, bullet_state = None):
+    def add_object(self, screen, *args):
         pass
 
     @abstractmethod

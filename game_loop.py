@@ -16,7 +16,7 @@ def game_loop(pygame, screen, player, enemies, bullet, background_image, num_of_
     enemyx_change = list(range(num_of_enemies))
     enemyy_change = list(range(num_of_enemies))
     for j in range(num_of_enemies):
-     enemyx_change[j] = Value(4)
+     enemyx_change[j] = Value(1)
      enemyy_change[j] = Value(40)
 
     #Score
@@ -44,7 +44,7 @@ def game_loop(pygame, screen, player, enemies, bullet, background_image, num_of_
         for i in range(num_of_enemies):
           enemies[i].object_movement(enemyx_change[i], enemyy_change[i])
           #collision
-          bullet.add_collision(enemies[i], bullet_state, score_value)
+          bullet.add_collision(enemies[i], bullet_state, score_value, pygame)
 
           enemies[i].add_object(screen)
 

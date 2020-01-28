@@ -10,8 +10,14 @@ if __name__ == '__main__':
     #Initialize pygame
     pygame.display.init()
 
-    #initialize pygame font
+    #Initialize pygame font
     pygame.font.init()
+
+    #Initialize pygame background sound
+    pygame.mixer.init()
+
+    pygame.mixer.music.load("sounds/background.wav")
+    pygame.mixer.music.play(-1)
 
     # Create a screen
     # Open a window on the screen

@@ -27,7 +27,7 @@ if __name__ == '__main__':
     player = Player(pygame, "images/space-invaders.png", 370, 480)
 
     # Enemy
-    enemy_position_x = random.randint(0, 800)
+    enemy_position_x = random.randint(0, 735)
     enemy_position_y = random.randint(50, 150)
     enemy = Enemy(pygame, "images/enemy.png", enemy_position_x, enemy_position_y)
 

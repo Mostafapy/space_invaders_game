@@ -6,7 +6,7 @@ class Bullets(GameObject):
      def add_object(self, screen, bullet_state = None):
         if bullet_state is not None:
            bullet_state.value = "fire"
-           screen.blit(self.game_object_img, (self.game_object_x + 16, self.game_object_y + 10))
+           screen.blit(self.game_object_img_or_font, (self.game_object_x + 16, self.game_object_y + 10))
     
      def object_movement(self, screen, bullety_change, bullet_state):
          if self.game_object_y <= 0:

@@ -6,7 +6,10 @@ def key_strokes_controllers (pygame, event, playerx_change, player, bullet, scre
        if event.key == pygame.K_RIGHT:
           playerx_change.value = 5
        if event.key == pygame.K_SPACE:
-          bullet.add_object(screen, player.game_object_x, bullet_state)
+          if bullet_state.value == "ready":
+             # Get x-coordinate of the spaceship player
+             bullet.game_object_x = player.game_object_x
+             bullet.add_object(screen, bullet_state)
 
     elif event.type == pygame.KEYUP:
        if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:

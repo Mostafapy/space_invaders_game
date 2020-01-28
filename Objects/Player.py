@@ -1,8 +1,8 @@
 from Objects.GameObject import GameObject
 class Player(GameObject):
 
-    def add_object(self, screen, player_x_pos= None, bullet_state = None):
-        if player_x_pos is None and bullet_state is None:
+    def add_object(self, screen, bullet_state = None):
+        if bullet_state is None:
             screen.blit(self.game_object_img_or_font, (self.game_object_x, self.game_object_y))
 
     def object_movement(self, player_x_change):

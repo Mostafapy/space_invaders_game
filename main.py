@@ -4,6 +4,7 @@ from game_loop import game_loop
 from Objects.Player import Player
 from Objects.Enemy import Enemy
 from Objects.Bullets import Bullets
+from Objects.Font import Font
 
 if __name__ == '__main__':
     #Initialize pygame
@@ -41,5 +42,8 @@ if __name__ == '__main__':
 
     #Bullets
     bullet = Bullets(pygame, "images/bullet.png", 0, 480)
+
+    #Font
+    font = Font(pygame, "fonts/SuperMario256.ttf", 10, 10)
     # Game Loop
-    game_loop(pygame, screen, player, enemies, bullet, background_img, num_of_enemies)
+    game_loop(pygame, screen, player, enemies, bullet, background_img, num_of_enemies, font)

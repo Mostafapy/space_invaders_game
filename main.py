@@ -6,8 +6,11 @@ from Objects.Enemy import Enemy
 from Objects.Bullets import Bullets
 
 if __name__ == '__main__':
-    #Intialize pygame
+    #Initialize pygame
     pygame.display.init()
+
+    #initialize pygame font
+    pygame.font.init()
 
     # Create a screen
     # Open a window on the screen

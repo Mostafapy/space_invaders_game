@@ -37,7 +37,7 @@ def game_loop(pygame, screen, player, enemy, bullet, background_image):
         enemy.object_movement(enemyx_change, enemyy_change)
         
         #bullet
-        bullet.object_movement(screen, player.game_object_x, bullety_change, bullet_state)
+        bullet.object_movement(screen, bullety_change, bullet_state)
 
         player.add_object(screen)
         enemy.add_object(screen)

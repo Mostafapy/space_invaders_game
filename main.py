@@ -27,12 +27,16 @@ if __name__ == '__main__':
     player = Player(pygame, "images/space-invaders.png", 370, 480)
 
     # Enemy
-    enemy_position_x = random.randint(0, 735)
-    enemy_position_y = random.randint(50, 150)
-    enemy = Enemy(pygame, "images/enemy.png", enemy_position_x, enemy_position_y)
+    num_of_enemies = 6
+    enemy_position_x = list(range(num_of_enemies))
+    enemy_position_y = list(range(num_of_enemies))
+    enemies = list(range(num_of_enemies))
+    for i in range(num_of_enemies):
+     enemy_position_x[i] = random.randint(0, 735)
+     enemy_position_y[i] = random.randint(50, 150)
+     enemies[i] = Enemy(pygame, "images/enemy.png", enemy_position_x[i], enemy_position_y[i])
 
     #Bullets
     bullet = Bullets(pygame, "images/bullet.png", 0, 480)
-
     # Game Loop
-    game_loop(pygame, screen, player, enemy, bullet, background_img)
+    game_loop(pygame, screen, player, enemies, bullet, background_img, num_of_enemies)

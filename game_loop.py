@@ -1,6 +1,6 @@
 from helpers.key_strokes import key_strokes_controllers
 from helpers.Value import Value
-def game_loop(pygame, screen, player, enemy, bullet, background_image):
+def game_loop(pygame, screen, player, enemies, bullet, background_image, num_of_enemies):
     # Game Loop
     running = True
 
@@ -13,8 +13,11 @@ def game_loop(pygame, screen, player, enemy, bullet, background_image):
     bullet_state = Value("ready")
 
     #Enemy
-    enemyx_change = Value(3)
-    enemyy_change = Value(40)
+    enemyx_change = list(range(num_of_enemies))
+    enemyy_change = list(range(num_of_enemies))
+    for j in range(num_of_enemies):
+     enemyx_change[j] = Value(4)
+     enemyy_change[j] = Value(40)
 
     #Score
     score = Value(0)
@@ -37,15 +40,17 @@ def game_loop(pygame, screen, player, enemy, bullet, background_image):
         player.object_movement(playerx_change)
 
         # Enemy change movement
-        enemy.object_movement(enemyx_change, enemyy_change)
-        
+        for i in range(num_of_enemies):
+          enemies[i].object_movement(enemyx_change[i], enemyy_change[i])
+          #collision
+          bullet.add_collision(enemies[i], bullet_state, score)
+
+          enemies[i].add_object(screen)
+
         #bullet
         bullet.object_movement(screen, bullety_change, bullet_state)
 
-        #collision
-        bullet.add_collision(enemy, bullet_state, score)
 
         player.add_object(screen)
-        enemy.add_object(screen)
 
         pygame.display.update()

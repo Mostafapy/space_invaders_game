@@ -13,8 +13,11 @@ def game_loop(pygame, screen, player, enemy, bullet, background_image):
     bullet_state = Value("ready")
 
     #Enemy
-    enemyx_change = Value(4)
+    enemyx_change = Value(3)
     enemyy_change = Value(40)
+
+    #Score
+    score = Value(0)
     while running:
         #RGB RED, GREEN, BLUE
         screen.fill((0, 0, 0))
@@ -38,6 +41,9 @@ def game_loop(pygame, screen, player, enemy, bullet, background_image):
         
         #bullet
         bullet.object_movement(screen, bullety_change, bullet_state)
+
+        #collision
+        bullet.add_collision(enemy, bullet_state, score)
 
         player.add_object(screen)
         enemy.add_object(screen)

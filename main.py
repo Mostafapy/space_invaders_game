@@ -13,12 +13,6 @@ if __name__ == '__main__':
     #Initialize pygame font
     pygame.font.init()
 
-    #Initialize pygame background sound
-    pygame.mixer.init()
-
-    pygame.mixer.music.load("sounds/background.wav")
-    pygame.mixer.music.play(-1)
-
     # Create a screen
     # Open a window on the screen
     screen_width=800
@@ -50,6 +44,10 @@ if __name__ == '__main__':
     bullet = Bullets(pygame, "images/bullet.png", 0, 480)
 
     #Font
-    font = Font(pygame, "fonts/SuperMario256.ttf", 10, 10)
+    font = Font(pygame, "fonts/SuperMario256.ttf", 10, 10, 32)
+
+    # Game over
+    game_over_text = Font(pygame, "fonts/SuperMario256.ttf", 200, 250, 64)
+
     # Game Loop
-    game_loop(pygame, screen, player, enemies, bullet, background_img, num_of_enemies, font)
+    game_loop(pygame, screen, player, enemies, bullet, background_img, num_of_enemies, font, game_over_text)

@@ -8,9 +8,9 @@ class Enemy(GameObject):
         self.game_object_x += enemy_x_change.value
 
         if self.game_object_x <= 0:
-            enemy_x_change.value = 1
+            enemy_x_change.value = 3
             self.game_object_y += enemy_y_change.value
 
         if self.game_object_x >= 736:
-            enemy_x_change.value = -1
+            enemy_x_change.value = -3
             self.game_object_y += enemy_y_change.value

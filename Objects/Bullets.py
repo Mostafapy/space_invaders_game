@@ -25,14 +25,9 @@ class Bullets(GameObject):
      def add_collision(self, enemy, bullet_state, score, pygame):
          iscollide = self.is_collision(enemy.game_object_x, enemy.game_object_y)
          if iscollide:
-             collision_sound = pygame.mixer.Sound("sounds/explosion.wav")
-             sound_channel_A = collision_sound.play()
              self.game_object_y = 480
              bullet_state.value = "ready"
              score.value += 1
              enemy.game_object_x = random.randint(0, 735)
              enemy.game_object_y= random.randint(50, 150)
-             time.sleep(1.8741949796676636)
-             if sound_channel_A.get_busy():
-                sound_channel_A.stop()
 
